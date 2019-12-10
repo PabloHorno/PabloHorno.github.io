@@ -214,14 +214,13 @@ html, body {
 	<div class="poweredBy" align="center">Powered by <b>GestorDeHoras</b></div>
 </body>
 <script>
-    var now = new Date();
     var countDownDate;
     if(now < new Date().setHours(11,50,00))
-	    countDownDate = now.setHours(11,30,00);
+	    countDownDate = new Date().setHours(11,30,00);
     else if(now < new Date().setHours(15,00,00))
-	    countDownDate = now.setHours(14,40,00);
+	    countDownDate = new Date().setHours(14,40,00);
     else {
-	    countDownDate = new Date(now.setDate(now.getDate() + 1)).setHours(11,30,00);
+	    countDownDate = new Date(new Date().setDate(new Date().getDate() + 2)).setHours(11,30,00);
 	    countDownDate = new Date(countDownDate);
     }
     countDownDate = countDownDate.getTime();
