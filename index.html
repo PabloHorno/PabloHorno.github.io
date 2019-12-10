@@ -1,0 +1,286 @@
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<style type="text/css">
+html, body {
+	margin: 0;
+	padding: 0;
+	background: #000;
+	width: 100%;
+	//height: 70%;
+	position: absolute;
+}
+
+.clock {
+	width: 100vw;
+	text-align: center;
+}
+
+.digit {
+	width: 9%;
+	height: 100%;
+	margin: 0 0.1%;
+	position: relative;
+	display: inline-block;
+	filter: blur(1px);
+}
+
+.digit::before {
+	content: "";
+	display: block;
+	padding-bottom: 157.5%;
+}
+
+.digit .segment {
+	background: #fdf8a3;
+	border-radius: 50%;
+	position: absolute;
+	opacity: 0.15;
+	transition: opacity 0.2s;
+	-webkit-transition: opacity 0.2s;
+	-ms-transition: opacity 0.2s;
+	-moz-transition: opacity 0.2s;
+	-o-transition: opacity 0.2s;
+	box-shadow: inset -3px -1px 3px 0px rgba(0, 0, 0, 0.4), inset 3px 1px 3px 0px rgba(0, 0, 0, 0.5);
+}
+
+.digit .segment.on, .separator {
+	opacity: 1;
+	/*! box-shadow:0 0 50px rgba(255,0,0,0.7); */
+	transition: opacity 0s;
+	-webkit-transition: opacity 0s;
+	-ms-transition: opacity 0s;
+	-moz-transition: opacity 0s;
+	-o-transition: opacity 0s;
+	box-shadow: inset -3px -1px 3px 0px rgba(255, 253, 0, 0.4), inset 3px 1px 3px 0px rgba(255, 96, 0, 0.5), inset 6px 4px 3px 0px rgba(0, 50, 0, 0.2), 3px 1px 3px 0px rgba(255, 253, 0, 0.4), 0 0 25px rgba(255, 0, 0, 0.7);
+}
+
+.separator {
+	width: 2%;
+	height: 16px;
+	background: #fdf8a3;
+	border-radius: 50%;
+	display: inline-block;
+	position: relative;
+	margin-bottom: 7%;
+	filter: blur(1px);
+}
+
+.digit .segment:nth-child(1) {
+	top: 7%;
+	left: 20%;
+	right: 20%;
+	height: 7%;
+}
+
+.digit .segment:nth-child(2) {
+	top: 14%;
+	right: 10%;
+	width: 12%;
+	height: 33%;
+}
+
+.digit .segment:nth-child(3) {
+	top: 54%;
+	right: 10%;
+	width: 12%;
+	height: 33%;
+}
+
+.digit .segment:nth-child(4) {
+	top: 86%;
+	right: 20%;
+	height: 7%;
+	left: 20%;
+}
+
+.digit .segment:nth-child(5) {
+	top: 54%;
+	left: 10%;
+	width: 12%;
+	height: 33%;
+}
+
+.digit .segment:nth-child(6) {
+	top: 14%;
+	left: 10%;
+	width: 12%;
+	height: 33%;
+}
+
+.digit .segment:nth-child(7) {
+	top: 47%;
+	right: 20%;
+	left: 20%;
+	height: 7%;
+}
+
+</style>
+</head>
+<body>
+<br/>
+<div class="clock">
+	<div class="digit days" data-value="">
+		<div class="segment"></div>
+		<div class="segment"></div>
+		<div class="segment"></div>
+		<div class="segment"></div>
+		<div class="segment"></div>
+		<div class="segment"></div>
+		<div class="segment"></div>
+	</div>
+
+	<div class="digit days" data-value="">
+		<div class="segment"></div>
+		<div class="segment"></div>
+		<div class="segment"></div>
+		<div class="segment"></div>
+		<div class="segment"></div>
+		<div class="segment"></div>
+		<div class="segment"></div>
+	</div>
+
+	<div class="separator"></div>
+
+	<div class="digit hours" data-value="">
+		<div class="segment"></div>
+		<div class="segment"></div>
+		<div class="segment"></div>
+		<div class="segment"></div>
+		<div class="segment"></div>
+		<div class="segment"></div>
+		<div class="segment"></div>
+	</div>
+
+	<div class="digit hours" data-value="">
+		<div class="segment"></div>
+		<div class="segment"></div>
+		<div class="segment"></div>
+		<div class="segment"></div>
+		<div class="segment"></div>
+		<div class="segment"></div>
+		<div class="segment"></div>
+	</div>
+
+	<div class="separator"></div>
+
+	<div class="digit minutes" data-value="">
+		<div class="segment"></div>
+		<div class="segment"></div>
+		<div class="segment"></div>
+		<div class="segment"></div>
+		<div class="segment"></div>
+		<div class="segment"></div>
+		<div class="segment"></div>
+	</div>
+
+	<div class="digit minutes" data-value="">
+		<div class="segment"></div>
+		<div class="segment"></div>
+		<div class="segment"></div>
+		<div class="segment"></div>
+		<div class="segment"></div>
+		<div class="segment"></div>
+		<div class="segment"></div>
+	</div>
+
+	<div class="separator"></div>
+
+	<div class="digit seconds" data-value="">
+		<div class="segment"></div>
+		<div class="segment"></div>
+		<div class="segment"></div>
+		<div class="segment"></div>
+		<div class="segment"></div>
+		<div class="segment"></div>
+		<div class="segment"></div>
+	</div>
+
+	<div class="digit seconds" data-value="">
+		<div class="segment"></div>
+		<div class="segment"></div>
+		<div class="segment"></div>
+		<div class="segment"></div>
+		<div class="segment"></div>
+		<div class="segment"></div>
+		<div class="segment"></div>
+	</div>
+</div>
+</body>
+<script>
+    var countDownDate = new Date("Dec 10, 2019 14:40").getTime();
+// Demo date in a month
+//var date = new Date();
+//var countDownDate = new Date(date.setMonth(date.getMonth()+1)).getTime();
+
+var digitSegments = [
+	[1, 2, 3, 4, 5, 6],
+	[2, 3],
+	[1, 2, 7, 5, 4],
+	[1, 2, 7, 3, 4],
+	[6, 7, 2, 3],
+	[1, 6, 7, 3, 4],
+	[1, 6, 5, 4, 3, 7],
+	[1, 2, 3],
+	[1, 2, 3, 4, 5, 6, 7],
+	[1, 2, 7, 3, 6]
+];
+
+document.addEventListener('DOMContentLoaded', function () {
+	var _days = document.querySelectorAll('.days');
+	var _hours = document.querySelectorAll('.hours');
+	var _minutes = document.querySelectorAll('.minutes');
+	var _seconds = document.querySelectorAll('.seconds');
+
+	setInterval(function () {
+		var now = new Date().getTime();
+		var distance = countDownDate - now;
+		if(distance < 0)
+			distance = 0;
+		var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+		var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+		var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+		var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+		setNumber(_days[0], Math.floor(days / 10), 1);
+		setNumber(_days[1], days % 10, 1);
+
+		setNumber(_hours[0], Math.floor(hours / 10), 1);
+		setNumber(_hours[1], hours % 10, 1);
+
+		setNumber(_minutes[0], Math.floor(minutes / 10), 1);
+		setNumber(_minutes[1], minutes % 10, 1);
+
+		setNumber(_seconds[0], Math.floor(seconds / 10), 1);
+		setNumber(_seconds[1], seconds % 10, 1);
+	}, 1000);
+});
+
+var setNumber = function (digit, number, on) {
+	var segments = digit.querySelectorAll('.segment');
+	var current = parseInt(digit.getAttribute('data-value'));
+
+	// only switch if number has changed or wasn't set
+	if (!isNaN(current) && current != number) {
+		// unset previous number
+		digitSegments[current].forEach(function (digitSegment, index) {
+			setTimeout(function () {
+				segments[digitSegment - 1].classList.remove('on');
+			}, index * 45)
+		});
+	}
+
+	if (isNaN(current) || current != number) {
+		// set new number after
+		setTimeout(function () {
+			digitSegments[number].forEach(function (digitSegment, index) {
+				setTimeout(function () {
+					segments[digitSegment - 1].classList.add('on');
+				}, index * 45)
+			});
+		}, 250);
+		digit.setAttribute('data-value', number);
+	}
+};
+</script>
+</html>
