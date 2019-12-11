@@ -224,9 +224,9 @@ html, body {
 	        countDownDate = new Date(new Date(new Date().setDate(new Date().getDate() + 3)).setHours(11,30,00));
     }
     else if(now < new Date().setHours(11,50,00))
-	    countDownDate = new Date().setHours(11,30,00);
+	    countDownDate = new Date(new Date().setHours(11,30,00));
     else if(now < new Date().setHours(15,00,00))
-	    countDownDate = new Date().setHours(14,40,00);
+	    countDownDate = new Date(new Date().setHours(14,40,00));
     else
 	    countDownDate = new Date(new Date(new Date().setDate(new Date().getDate() + 1)).setHours(11,30,00));
     countDownDate = countDownDate.getTime();
