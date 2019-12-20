@@ -220,7 +220,7 @@ html, body {
     if(now.getDay() === 5) //Si es viernes
     {
 	    if(now < new Date().setHours(10,30,00))
-	    	countDownDate = new Date().setHours(10,01,00);
+	    	countDownDate = new Date(new Date().setHours(10,01,00));
 	    else
 	        countDownDate = new Date(new Date(new Date().setDate(new Date().getDate() + 3)).setHours(11,30,00));
     }
