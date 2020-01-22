@@ -216,21 +216,7 @@ html, body {
 </body>
 <script>
     var countDownDate;
-    var now = new Date();
-    if(now.getDay() === 5) //Si es viernes
-    {
-	    if(now < new Date().setHours(10,30,00))
-	    	countDownDate = new Date(new Date().setHours(10,01,00));
-	    else
-	        countDownDate = new Date(new Date(new Date().setDate(new Date().getDate() + 3)).setHours(11,30,00));
-    }
-    else if(now < new Date().setHours(11,50,00))
-	    countDownDate = new Date(new Date().setHours(11,30,00));
-    else if(now < new Date().setHours(15,00,00))
-	    countDownDate = new Date(new Date().setHours(14,40,00));
-    else
-	    countDownDate = new Date(new Date(new Date().setDate(new Date().getDate() + 1)).setHours(11,30,00));
-    countDownDate = countDownDate.getTime();
+	getDateTime();
 // Demo date in a month
 //var date = new Date();
 //var countDownDate = new Date(date.setMonth(date.getMonth()+1)).getTime(); 
@@ -247,6 +233,24 @@ var digitSegments = [
 	[1, 2, 3, 4, 5, 6, 7],
 	[1, 2, 7, 3, 6]
 ];
+function getDateTime()
+{
+	var now = new Date();
+    	if(now.getDay() === 5) //Si es viernes
+    	{
+		if(now < new Date().setHours(10,30,00))
+	    		countDownDate = new Date(new Date().setHours(10,01,00));
+	    	else
+	        	countDownDate = new Date(new Date(new Date().setDate(new Date().getDate() + 3)).setHours(11,30,00));
+    	}
+	else if(now < new Date().setHours(11,50,00))
+		countDownDate = new Date(new Date().setHours(11,30,00));
+	else if(now < new Date().setHours(15,00,00))
+		countDownDate = new Date(new Date().setHours(14,40,00));
+	else
+		countDownDate = new Date(new Date(new Date().setDate(new Date().getDate() + 1)).setHours(11,30,00));
+	countDownDate = countDownDate.getTime();
+}
 
 document.addEventListener('DOMContentLoaded', function () {
 	var _days = document.querySelectorAll('.days');
@@ -256,6 +260,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
 	setInterval(function () {
 		var now = new Date().getTime();
+		if(countDownDate == 0)
+			getDateTime();
 		var distance = countDownDate - now;
 		if(distance < 0)
 			distance = 0;
